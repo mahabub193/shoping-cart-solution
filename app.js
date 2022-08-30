@@ -1,8 +1,20 @@
-function updateCaseNumber(inputId){
-    const caseInput = document.getElementById(inputId);
-    const caseNumber = caseInput.value;
-    caseInput.value=parseInt(caseNumber)+1;
-    return caseInput;
+function updateCaseNumber(isIncreasing) {
+    const caseInput = document.getElementById('case-number');
+    let caseNumber = caseInput.value;
+    if (isIncreasing == true) {
+       caseNumber = parseInt(caseNumber) + 1;
+    }
+    else if(caseNumber>0) {
+        caseNumber = parseInt(caseNumber) - 1;
+    }
+    caseInput.value=caseNumber;
+
+    // update case total
+    const caseTotal=document.getElementById('case-total');
+    caseTotal.innerText=caseNumber*59;
+
+
+
 }
 
 
@@ -10,18 +22,15 @@ function updateCaseNumber(inputId){
 
 
 
-document.getElementById('case-plus').addEventListener('click',function(){
-    const caseInput = document.getElementById('case-number');
-    const caseNumber = caseInput.value;
-    caseInput.value=parseInt(caseNumber)+1;
+document.getElementById('case-plus').addEventListener('click', function () {
+    updateCaseNumber(true);
 })
 
-document.getElementById('case-minus').addEventListener('click',function(){
-    const caseInput = document.getElementById('case-number');
-    const caseNumber = caseInput.value;
-    caseInput.value=parseInt(caseNumber)-1;
- 
- })
+document.getElementById('case-minus').addEventListener('click', function () {
+    updateCaseNumber(false);
+    // caseInput.value=parseInt(caseNumber)-1;
+
+})
 
 
 /* document.getElementById('btn-plus').addEventListener('click',function(){
